@@ -61,6 +61,11 @@
               "version": "[11.11.0, )",
               "versionCentrallyManaged": true
             },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[9.0.4, )",
+              "versionCentrallyManaged": true
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[9.0.4, )",
@@ -140,6 +145,7 @@
             "Asp.Versioning.Mvc": "8.1.0",
             "EFCore.NamingConventions": "9.0.0",
             "FluentValidation.DependencyInjectionExtensions": "11.11.0",
+            "Microsoft.AspNetCore.Authentication.JwtBearer": "9.0.4",
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "9.0.4",
             "Microsoft.AspNetCore.JsonPatch": "9.0.4",
             "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "9.0.4",

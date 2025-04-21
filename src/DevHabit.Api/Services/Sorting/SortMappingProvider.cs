@@ -16,7 +16,7 @@ public sealed class SortMappingProvider(IEnumerable<ISortMappingDefinition> sort
 
         return sortMappingDefinition?.Mappings;
     }
-    
+
     public bool ValidateMappings<TSource, TDestination>(string? sort)
     {
         if (string.IsNullOrWhiteSpace(sort))

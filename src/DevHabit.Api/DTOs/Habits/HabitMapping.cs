@@ -16,12 +16,12 @@ internal static class HabitQueries
             Type = habit.Type,
             Frequency = new FrequencyDto
             {
-                Type = habit.Frequency.Type, 
+                Type = habit.Frequency.Type,
                 TimesPerPeriod = habit.Frequency.TimesPerPeriod
             },
             Target = new TargetDto
             {
-                Value = habit.Target.Value, 
+                Value = habit.Target.Value,
                 Unit = habit.Target.Unit
             },
             Status = habit.Status,
@@ -31,7 +31,7 @@ internal static class HabitQueries
                 ? null
                 : new MilestoneDto
                 {
-                    Target = habit.Milestone.Target, 
+                    Target = habit.Milestone.Target,
                     Current = habit.Milestone.Current
                 },
             CreatedAtUtc = habit.CreatedAtUtc,
@@ -49,12 +49,12 @@ internal static class HabitQueries
             Type = habit.Type,
             Frequency = new FrequencyDto
             {
-                Type = habit.Frequency.Type, 
+                Type = habit.Frequency.Type,
                 TimesPerPeriod = habit.Frequency.TimesPerPeriod
             },
             Target = new TargetDto
             {
-                Value = habit.Target.Value, 
+                Value = habit.Target.Value,
                 Unit = habit.Target.Unit
             },
             Status = habit.Status,
@@ -64,12 +64,47 @@ internal static class HabitQueries
                 ? null
                 : new MilestoneDto
                 {
-                    Target = habit.Milestone.Target, 
+                    Target = habit.Milestone.Target,
                     Current = habit.Milestone.Current
                 },
             CreatedAtUtc = habit.CreatedAtUtc,
             UpdatedAtUtc = habit.UpdatedAtUtc,
             LastCompletedAtUtc = habit.LastCompletedAtUtc,
+            Tags = habit.Tags.Select(t => t.Name).ToArray()
+        };
+    }
+    
+    public static Expression<Func<Habit, HabitWithTagsDtoV2>> ProjectToDtoWithTagsV2()
+    {
+        return habit => new HabitWithTagsDtoV2
+        {
+            Id = habit.Id,
+            Name = habit.Name,
+            Description = habit.Description,
+            Type = habit.Type,
+            Frequency = new FrequencyDto
+            {
+                Type = habit.Frequency.Type,
+                TimesPerPeriod = habit.Frequency.TimesPerPeriod
+            },
+            Target = new TargetDto
+            {
+                Value = habit.Target.Value,
+                Unit = habit.Target.Unit
+            },
+            Status = habit.Status,
+            IsArchived = habit.IsArchived,
+            EndDate = habit.EndDate,
+            Milestone = habit.Milestone == null
+                ? null
+                : new MilestoneDto
+                {
+                    Target = habit.Milestone.Target,
+                    Current = habit.Milestone.Current
+                },
+            CreatedAt = habit.CreatedAtUtc,
+            UpdatedAt = habit.UpdatedAtUtc,
+            LastCompletedAt = habit.LastCompletedAtUtc,
             Tags = habit.Tags.Select(t => t.Name).ToArray()
         };
     }
@@ -105,19 +140,20 @@ internal static class HabitMapping
     };
     public static HabitDto ToDto(this Habit habit)
     {
-        return new HabitDto{
+        return new HabitDto
+        {
             Id = habit.Id,
             Name = habit.Name,
             Description = habit.Description,
             Type = habit.Type,
             Frequency = new FrequencyDto
             {
-                Type = habit.Frequency.Type, 
+                Type = habit.Frequency.Type,
                 TimesPerPeriod = habit.Frequency.TimesPerPeriod
             },
             Target = new TargetDto
             {
-                Value = habit.Target.Value, 
+                Value = habit.Target.Value,
                 Unit = habit.Target.Unit
             },
             Status = habit.Status,
@@ -127,7 +163,7 @@ internal static class HabitMapping
                 ? null
                 : new MilestoneDto
                 {
-                    Target = habit.Milestone.Target, 
+                    Target = habit.Milestone.Target,
                     Current = habit.Milestone.Current
                 },
             CreatedAtUtc = habit.CreatedAtUtc,
@@ -180,7 +216,7 @@ internal static class HabitMapping
             Type = dto.Frequency.Type,
             TimesPerPeriod = dto.Frequency.TimesPerPeriod
         };
-        
+
         habit.Target = new Target
         {
             Value = dto.Target.Value,
@@ -189,7 +225,7 @@ internal static class HabitMapping
 
         if (dto.Milestone is not null)
         {
-            habit.Milestone ??=  new Milestone();
+            habit.Milestone ??= new Milestone();
             habit.Milestone.Target = dto.Milestone.Target;
         }
 

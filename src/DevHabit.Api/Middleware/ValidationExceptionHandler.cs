@@ -33,7 +33,7 @@ public sealed class ValidationExceptionHandler(IProblemDetailsService problemDet
                 g => g.Key.ToLowerInvariant(),
                 g => g.Select(e => e.ErrorMessage).ToArray()
             );
-        
+
         context.ProblemDetails.Extensions.Add("errors", errors);
 
         return await problemDetailsService.TryWriteAsync(context);

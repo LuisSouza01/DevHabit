@@ -23,7 +23,7 @@ public sealed class TagsController(ApplicationDbContext dbContext) : ControllerB
 
         var habitsCollectionDto = new TagsCollectionDto
         {
-            Data = tags
+            Items = tags
         };
 
         return Ok(habitsCollectionDto);
@@ -54,12 +54,12 @@ public sealed class TagsController(ApplicationDbContext dbContext) : ControllerB
         if (!validationResult.IsValid)
         {
             ProblemDetails problem = problemDetailsFactory.CreateProblemDetails(HttpContext, StatusCodes.Status400BadRequest);
-            
+
             problem.Extensions.Add("errors", validationResult.ToDictionary());
-            
+
             return BadRequest(problem);
         }
-        
+
         Tag tag = createTagDto.ToEntity();
 
         if (await dbContext.Tags.AnyAsync(t => t.Name == tag.Name))

@@ -29,7 +29,7 @@ public class HabitTagsController(ApplicationDbContext dbContext)
         {
             return NoContent();
         }
-        
+
         List<string> existingTagIds = await dbContext.Tags
             .Where(t => upsertHabitTagsDto.TagIds.Contains(t.Id))
             .Select(t => t.Id).ToListAsync();
@@ -42,7 +42,7 @@ public class HabitTagsController(ApplicationDbContext dbContext)
         habit.HabitTags.RemoveAll(ht => !upsertHabitTagsDto.TagIds.Contains(ht.TagId));
 
         string[] tagIdsToAdd = upsertHabitTagsDto.TagIds.Except(currentTagIds).ToArray();
-        
+
         habit.HabitTags.AddRange(tagIdsToAdd.Select(tagId => new HabitTag
         {
             HabitId = habitId,
@@ -51,10 +51,10 @@ public class HabitTagsController(ApplicationDbContext dbContext)
         }));
 
         await dbContext.SaveChangesAsync();
-        
+
         return NoContent();
     }
-    
+
     [HttpDelete("{tagId}")]
     public async Task<ActionResult> DeleteTagFromHabit(string habitId, string tagId)
     {
@@ -69,7 +69,7 @@ public class HabitTagsController(ApplicationDbContext dbContext)
         dbContext.HabitTags.Remove(habitTag);
 
         await dbContext.SaveChangesAsync();
-        
+
         return NoContent();
     }
 }

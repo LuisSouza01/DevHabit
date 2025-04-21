@@ -28,7 +28,7 @@ internal static class QueryableExtensions
 
             SortMapping mapping = mappings.First(m =>
                 m.SortField.Equals(sortField, StringComparison.OrdinalIgnoreCase));
-
+            
             string direction = (isDescending, mapping.Reverse) switch
             {
                 (false, false) => "ASC",
@@ -36,15 +36,15 @@ internal static class QueryableExtensions
                 (true, false) => "DESC",
                 (true, true) => "ASC"
             };
-            
+
             orderByParts.Add($"{mapping.PropertyName} {direction}");
         }
-        
+
         string orderBy = string.Join(",", orderByParts);
 
         return query.OrderBy(orderBy);
     }
-    
+
     private static (string SortField, bool IsDescending) ParseSortField(string field)
     {
         string[] parts = field.Split(' ');

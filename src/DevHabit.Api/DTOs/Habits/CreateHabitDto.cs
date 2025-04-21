@@ -22,7 +22,7 @@ public sealed class CreateHabitDtoValidator : AbstractValidator<CreateHabitDto>
     ];
 
     private static readonly string[] AllowedUnitsForBinaryHabits = ["sessions", "tasks"];
-    
+
     public CreateHabitDtoValidator()
     {
         RuleFor(x => x.Name)
@@ -81,6 +81,7 @@ public sealed class CreateHabitDtoValidator : AbstractValidator<CreateHabitDto>
         {
             HabitType.Binary => AllowedUnitsForBinaryHabits.Contains(normalizedUnit),
             HabitType.Measurable => AllowedUnits.Contains(normalizedUnit),
+            HabitType.None => false,
             _ => false
         };
     }

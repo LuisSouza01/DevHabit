@@ -13,7 +13,7 @@ public static class DatabaseExtensions
         try
         {
             await dbContext.Database.MigrateAsync();
-            
+
             app.Logger.LogInformation("Database migrations applied successfully.");
         }
         catch (Exception e)

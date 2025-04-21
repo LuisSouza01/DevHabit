@@ -292,3 +292,15 @@
 /Users/luissouza/Documents/Projects/Studies/DevHabit/src/DevHabit.Api/bin/Debug/net9.0/Asp.Versioning.Abstractions.dll
 /Users/luissouza/Documents/Projects/Studies/DevHabit/src/DevHabit.Api/bin/Debug/net9.0/Asp.Versioning.Http.dll
 /Users/luissouza/Documents/Projects/Studies/DevHabit/src/DevHabit.Api/bin/Debug/net9.0/Asp.Versioning.Mvc.dll
+/Users/luis/Documents/Projects/DevHabit/src/DevHabit.Api/bin/Debug/net9.0/Asp.Versioning.Abstractions.dll
+/Users/luis/Documents/Projects/DevHabit/src/DevHabit.Api/bin/Debug/net9.0/Asp.Versioning.Http.dll
+/Users/luis/Documents/Projects/DevHabit/src/DevHabit.Api/bin/Debug/net9.0/Asp.Versioning.Mvc.dll
+/Users/luis/Documents/Projects/DevHabit/src/DevHabit.Api/bin/Debug/net9.0/FluentValidation.dll
+/Users/luis/Documents/Projects/DevHabit/src/DevHabit.Api/bin/Debug/net9.0/FluentValidation.DependencyInjectionExtensions.dll
+/Users/luis/Documents/Projects/DevHabit/src/DevHabit.Api/bin/Debug/net9.0/System.Linq.Dynamic.Core.dll
+/Users/luis/Documents/Projects/DevHabit/src/DevHabit.Api/obj/Debug/net9.0/DevHabit.Api.sourcelink.json
+/Users/luis/Documents/Projects/DevHabit/src/DevHabit.Api/bin/Debug/net9.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+/Users/luis/Documents/Projects/DevHabit/src/DevHabit.Api/bin/Debug/net9.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+/Users/luis/Documents/Projects/DevHabit/src/DevHabit.Api/bin/Debug/net9.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+/Users/luis/Documents/Projects/DevHabit/src/DevHabit.Api/bin/Debug/net9.0/Microsoft.Extensions.Identity.Core.dll
+/Users/luis/Documents/Projects/DevHabit/src/DevHabit.Api/bin/Debug/net9.0/Microsoft.Extensions.Identity.Stores.dll

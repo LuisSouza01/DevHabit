@@ -56,6 +56,23 @@ public sealed class AuthController(
                 }
             );
         }
+
+        IdentityResult addToRoleResult = await userManager.AddToRoleAsync(identityUser, Roles.Member);
+        
+        if (!addToRoleResult.Succeeded)
+        {
+            return Problem(
+                detail: "Unable to register user, please try again",
+                statusCode: StatusCodes.Status400BadRequest,
+                extensions: new Dictionary<string, object?>
+                {
+                    {
+                        "errors", 
+                        addToRoleResult.Errors.ToDictionary(e => e.Code, e => e.Description)
+                    }
+                }
+            );
+        }
         
         // Create app user
 
@@ -67,7 +84,7 @@ public sealed class AuthController(
 
         await applicationDbContext.SaveChangesAsync();
         
-        var tokenRequest = new TokenRequest(identityUser.Id, identityUser.Email);
+        var tokenRequest = new TokenRequest(identityUser.Id, identityUser.Email, [Roles.Member]);
         
         AccessTokensDto accessTokens = tokenProvider.Create(tokenRequest);
 
@@ -96,8 +113,10 @@ public sealed class AuthController(
         {
             return Unauthorized();
         }
+
+        IList<string> roles = await userManager.GetRolesAsync(identityUser);
         
-        var tokenRequest = new TokenRequest(identityUser.Id, identityUser.Email!);
+        var tokenRequest = new TokenRequest(identityUser.Id, identityUser.Email!, roles);
         
         AccessTokensDto accessTokens = tokenProvider.Create(tokenRequest);
         
@@ -132,7 +151,9 @@ public sealed class AuthController(
             return Unauthorized();
         }
         
-        var tokenRequest = new TokenRequest(refreshToken.User.Id, refreshToken.User.Email!);
+        IList<string> roles = await userManager.GetRolesAsync(refreshToken.User);
+        
+        var tokenRequest = new TokenRequest(refreshToken.User.Id, refreshToken.User.Email!, roles);
         
         AccessTokensDto accessTokens = tokenProvider.Create(tokenRequest);
 

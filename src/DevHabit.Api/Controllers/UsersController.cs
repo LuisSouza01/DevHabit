@@ -1,6 +1,6 @@
-using System.Security.Claims;
 using DevHabit.Api.Database;
 using DevHabit.Api.DTOs.Users;
+using DevHabit.Api.Entities;
 using DevHabit.Api.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +10,7 @@ namespace DevHabit.Api.Controllers;
 
 [ApiController]
 [Route("users")]
-[Authorize]
+[Authorize(Roles = $"{Roles.Admin}, {Roles.Member}")]
 public sealed class UsersController(ApplicationDbContext context,
     UserContext userContext)
     : ControllerBase

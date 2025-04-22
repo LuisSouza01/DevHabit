@@ -9,7 +9,7 @@ namespace DevHabit.Api.Controllers;
 
 [ApiController]
 [Route("habits/{habitId}/tags")]
-[Authorize]
+[Authorize(Roles = $"{Roles.Admin}, {Roles.Member}")]
 public class HabitTagsController(ApplicationDbContext dbContext)
     : ControllerBase
 {

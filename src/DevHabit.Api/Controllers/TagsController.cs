@@ -12,7 +12,7 @@ namespace DevHabit.Api.Controllers;
 
 [ApiController]
 [Route("tags")]
-[Authorize]
+[Authorize(Roles = $"{Roles.Admin}, {Roles.Member}")]
 public sealed class TagsController(ApplicationDbContext dbContext) : ControllerBase
 {
     [HttpGet]

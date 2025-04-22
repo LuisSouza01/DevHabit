@@ -25,7 +25,7 @@ namespace DevHabit.Api.Controllers;
     CustomMediaTypeNames.Application.HateoasJson,
     CustomMediaTypeNames.Application.HateoasJsonV1,
     CustomMediaTypeNames.Application.HateoasJsonV2)]
-[Authorize]
+[Authorize(Roles = $"{Roles.Admin}, {Roles.Member}")]
 public sealed class HabitsController(
     ApplicationDbContext dbContext,
     LinkService linkService,
